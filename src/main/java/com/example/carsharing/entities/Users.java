@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Entity
 @Getter
@@ -16,7 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int user_id;
+    @Column(name = "user_id")
+    int userid;
 //    @ColumnDefault("No name")
     @Column(name = "name")
     String name;

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation</title>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+<nav class="default-nav">
+    <ul>
+        <li><a href="/main">Back</a></li>
+        <li th:unless="${isAdmin}"><a href="/reservations">My Bookings</a></li>
+        <li th:if="${isAdmin}"><a href="/bookings">Manage All Bookings</a></li>
+        <li th:if="${isAdmin}"><a href="/cars">Manage All Cars</a></li>
+        <li><span th:text="'Logged in id: '+${id}"></span></li>
+    </ul>
+</nav>
+<h1 th:if="${!car.isAvailable()}">Car is not available</h1>
+<h1 th:text="'For how many hours do you want to reserve '+${car.getModel()}+'?'" th:if="${car.isAvailable()}"></h1>
+<form method="post" action="/reserve" th:if="${car.isAvailable()}" >
+    <input type="hidden" name="car_id" th:value="${car.getCar_id()}">
+    <input type="number" name="hours" placeholder="Hours" class="hours">
+    <br>
+    <button type="submit">Reserve</button>
+</form>
+</body>
+</html>

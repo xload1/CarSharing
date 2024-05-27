@@ -17,4 +17,7 @@ public class CarSharingService {
     public List<Cars> getAllCars() {
         return carsRepository.findAll();
     }
+    public Cars getCar(int id) {
+        return carsRepository.findById(id).orElse(null);
+    }
 }

@@ -9,7 +9,7 @@
 <body>
 <nav class="default-nav">
     <ul>
-        <li th:unless="${isAdmin}"><a href="/bookings">My Bookings</a></li>
+        <li th:unless="${isAdmin}"><a href="/reservations">My Bookings</a></li>
         <li th:if="${isAdmin}"><a href="/bookings">Manage All Bookings</a></li>
         <li th:if="${isAdmin}"><a href="/cars">Manage All Cars</a></li>
         <li><span th:text="'Logged in id: '+${id}"></span></li>
