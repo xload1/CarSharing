@@ -21,7 +21,12 @@
 <div class="container" th:each="car : ${cars}">
     <div class="car-item">
         <div class="item" th:attr="data-keyword=${car.getModel()}"></div>
-        <a href="#" class="reserve-button">Reserve</a>
+        <div class="middle">
+            <p th:text="${car.getModel()}" class="carp"></p>
+            <p th:if="${car.isAvailable()}" class="carp">Car Available</p>
+            <p th:unless="${car.isAvailable()}" class="carp">Car Unavailable</p>
+        </div>
+        <a th:href="'main/'+${car.getCar_id()}" class="reserve-button">Reserve</a>
     </div>
 </div>
 <script>
@@ -31,6 +36,7 @@
         const data = await response.json();
         return data.urls.thumb; // or use data.urls.thumb for thumbnail size
     }
+
     async function loadImages() {
         const items = document.querySelectorAll('.item');
         items.forEach(async (item) => {

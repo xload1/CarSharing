@@ -115,33 +115,44 @@ input[type=checkbox]{
     border-bottom-right-radius: 10px;
     margin: 0;
     position: relative;
-    bottom: -41%;
+    /*bottom: -41%;*/
 }
 
 .reserve-button:hover {
     background-color: #0056b3;
 }
-
-@media (max-width: 1200px) {
-    .car-item {
-        width: 23%;
-    }
+.middle {
+    margin:0;
+    background-color: #13134d;
+    height: 40%;
+    position: relative;
+    bottom: -7%;
+    border: 1px solid #ddd;
 }
-
-@media (max-width: 992px) {
-    .car-item {
-        width: 30%;
-    }
+.carp{
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
+/*@media (max-width: 1200px) {*/
+/*    .car-item {*/
+/*        width: 23%;*/
+/*    }*/
+/*}*/
 
-@media (max-width: 768px) {
-    .car-item {
-        width: 45%;
-    }
-}
+/*@media (max-width: 992px) {*/
+/*    .car-item {*/
+/*        width: 30%;*/
+/*    }*/
+/*}*/
 
-@media (max-width: 576px) {
-    .car-item {
-        width: 90%;
-    }
-}
+/*@media (max-width: 768px) {*/
+/*    .car-item {*/
+/*        width: 45%;*/
+/*    }*/
+/*}*/
+
+/*@media (max-width: 576px) {*/
+/*    .car-item {*/
+/*        width: 90%;*/
+/*    }*/
+/*}*/
