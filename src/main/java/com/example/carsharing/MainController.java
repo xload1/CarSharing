@@ -58,7 +58,7 @@ public class MainController {
         if(showBookings) {
             model.addAttribute("cars", carSharingService.getAllCars().stream().sorted(Comparator.comparing(Cars::isAvailable).reversed()).toList());
         } else {
-            model.addAttribute("cars", carSharingService);
+            model.addAttribute("cars", carSharingService.getAllAvailableCars());
         }
         model.addAttribute("id", loggedInUserId);
         return "main page";

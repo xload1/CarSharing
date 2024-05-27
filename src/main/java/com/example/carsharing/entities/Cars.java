@@ -1,9 +1,6 @@
 package com.example.carsharing.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,5 +16,6 @@ public class Cars {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int car_id;
     String model;
+    @Column(name = "is_available")
     boolean isAvailable;
 }
