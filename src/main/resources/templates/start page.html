@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>start page</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<body>
+<h1>Welcome to Car Sharing Platform!</h1>
+<form method="post" action="/enter">
+    <p>Enter your id to enter:</p>
+    <input type="number" name="user_id" id="userId" placeholder="ID" class="userId">
+    <br/>
+    <span>New User?</span>
+    <input type="checkbox" name="newUser" id="toggleCheckbox">
+    <div id="hiddenDiv" class="hiddenDiv">
+<!--        <p>Enter your name:</p>-->
+    <input type="text" name="user_name" placeholder="Enter your name">
+<!--        <p>Enter your contact info:</p>-->
+    <input type="text" name="contact" placeholder="Enter your contact info">
+    </div>
+    <br>
+    <button type="submit">Enter</button>
+</form>
+<p th:text="${loginError}" style="color: orangered"/>
+<script>
+    document.getElementById('toggleCheckbox').addEventListener('change', function() {
+        let hiddenInputs = document.getElementById('hiddenDiv');
+        let userId = document.getElementById('userId');
+        if (this.checked) {
+            hiddenInputs.style.display = 'block';
+            userId.style.display = 'none';
+        } else {
+            hiddenInputs.style.display = 'none';
+            userId.style.display = 'inline';
+        }
+    });
+</script>
+</body>
+</html>

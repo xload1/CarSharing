@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<body>
+<nav class="default-nav">
+    <ul>
+        <li th:unless="${isAdmin}"><a href="/bookings">My Bookings</a></li>
+        <li th:if="${isAdmin}"><a href="/bookings">Manage All Bookings</a></li>
+        <li th:if="${isAdmin}"><a href="/cars">Manage All Cars</a></li>
+        <li><span th:text="'Logged in id: '+${id}"></span></li>
+    </ul>
+</nav>
+<a href="/main?show=true" th:unless="${show}">Show unavailable cars</a>
+<a href="/main" th:if="${show}">Hide unavailable cars</a>
+<div class="container" th:each="car : ${cars}">
+    <div class="car-item">
+        <img th:src="'https://api.unsplash.com/search/photos?query=' + ${car.getModel()} + '&client_id=Hk70wXkwyEfkSg8tN6p19wUr61cUbZeq1tLeopI8xAQ'" alt="Car Image">
+        <a href="#" class="reserve-button">Reserve</a>
+    </div>
+</div>
+</body>
+</html>

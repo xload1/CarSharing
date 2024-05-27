@@ -1,0 +1,79 @@
+body {
+    background-image: url('back.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+    color: white;
+    font-family: 'Poppins';
+    text-align: center;
+}h1 {
+     font-size: 50px;
+     margin-top: 50px;
+}
+nav {
+    position: sticky;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100px;
+}
+.default-nav {
+    --filter: blur(15px);
+    -webkit-backdrop-filter: var(--filter);
+    backdrop-filter: var(--filter);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+}
+ul {
+    list-style-type: none ;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: transparent;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+}
+.hiddenDiv {
+    display: none;
+}
+a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 20px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid white;
+}
+input{
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid white;
+    background-color: transparent;
+    color: white;
+    font-size: 15px;
+    margin: 5px;
+}
+button {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 5px;
+    cursor: pointer;
+}
+input[type=checkbox]{
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    margin: 0 2px;
+    cursor: pointer;
+}
