@@ -15,6 +15,7 @@
         <li><span th:text="'Logged in id: '+${id}"></span></li>
     </ul>
 </nav>
+<h1>Welcome! Select a car to create a booking</h1>
 <a href="/main?show=true" th:unless="${show}">Show unavailable cars</a>
 <a href="/main" th:if="${show}">Hide unavailable cars</a>
 <br>
@@ -23,8 +24,8 @@
         <div class="item" th:attr="data-keyword=${car.getModel()}"></div>
         <div class="middle">
             <p th:text="${car.getModel()}" class="carp"></p>
-            <p th:if="${car.isAvailable()}" class="carp">Car Available</p>
-            <p th:unless="${car.isAvailable()}" class="carp">Car Unavailable</p>
+            <p th:if="${car.isAvailable()}" class="carp2">Car Available</p>
+            <p th:unless="${car.isAvailable()}" class="carp2">Car Unavailable</p>
         </div>
         <a th:href="'main/'+${car.getCar_id()}" class="reserve-button">Reserve</a>
     </div>

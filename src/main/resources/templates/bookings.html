@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<body>
+<nav class="default-nav">
+    <ul>
+        <li><a href="/main">Back</a></li>
+        <li th:if="${isAdmin}"><a href="/cars">Manage All Cars</a></li>
+        <li><span th:text="'Logged in id: '+${id}"></span></li>
+    </ul>
+</nav>
+<h1 th:if="${bookings.isEmpty()}">No bookings yet</h1>
+<h1 th:unless="${bookings.isEmpty()}">Manage all bookings:</h1>
+<table th:unless="${bookings.isEmpty()}" style="margin-left: auto; margin-right: auto">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Car Model</th>
+        <th>Contact Info</th>
+        <th>Book from:</th>
+        <th>Book to:</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="booking : ${bookings}">
+        <td th:text="${ls.getUser(booking.getUserid()).getName()}"></td>
+        <td th:text="${css.getCar(booking.getCar_id()).getModel()}"></td>
+        <td th:text="${ls.getUser(booking.getUserid()).getContact()}"></td>
+        <td th:text="${booking.from}"></td>
+        <td th:text="${booking.to}"></td>
+        <td><form method="post" action="/cancel">
+            <input type="hidden" name="booking_id" th:value="${booking.getBooking_id()}">
+            <input type="hidden" name="table" value="yes">
+            <button type="submit">Cancel reservation</button>
+        </form></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

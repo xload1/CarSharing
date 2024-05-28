@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 @Controller
 public class MainController {
@@ -65,11 +66,12 @@ public class MainController {
 
     @GetMapping("/main")
     public String main(Model model, @RequestParam(required = false) String show) {
+        reservationService.removeExpiredBookings();
         model.addAttribute("isAdmin", isAdmin);
         boolean showBookings = show != null && show.equals("true");
         model.addAttribute("show", showBookings);
         if (showBookings) {
-            model.addAttribute("cars", carSharingService.getAllCars().stream().sorted(Comparator.comparing(Cars::isAvailable).reversed()).toList());
+            model.addAttribute("cars", carSharingService.getAllCars());
         } else {
             model.addAttribute("cars", carSharingService.getAllAvailableCars());
         }
@@ -97,12 +99,44 @@ public class MainController {
         model.addAttribute("css", carSharingService);
         model.addAttribute("error", reservationError);
         model.addAttribute("isAdmin", isAdmin);
+        model.addAttribute("id", loggedInUserId);
         return "reservations";
     }
     @PostMapping("/cancel")
-    public String cancel(@RequestParam int booking_id) {
+    public String cancel(@RequestParam int booking_id, @RequestParam(required = false) String table) {
         reservationService.cancelBooking(booking_id);
         reservationError = "Booking cancelled";
+        if (table.equals("yes")) {
+            return "redirect:/bookings";
+        }
         return "redirect:/reservations";
+    }
+    @GetMapping("/bookings")
+    public String bookings(Model model) {
+        model.addAttribute("bookings", carSharingService.getAllBookings());
+        model.addAttribute("isAdmin", isAdmin);
+        model.addAttribute("css", carSharingService);
+        model.addAttribute("ls", loginService);
+        model.addAttribute("id", loggedInUserId);
+        return "bookings";
+    }
+    @GetMapping("cars")
+    public String cars(Model model) {
+        model.addAttribute("cars", carSharingService.getAllCars());
+        model.addAttribute("isAdmin", isAdmin);
+        model.addAttribute("id", loggedInUserId);
+        return "cars";
+    }
+    @PostMapping("/deletecar")
+    public String deleteCar(@RequestParam int car_id) {
+        carSharingService.removeCar(car_id);
+        return "redirect:/cars";
+    }
+    @PostMapping("/addcar")
+    public String addCar(@RequestParam String model) {
+        Cars car = new Cars();
+        car.setModel(model);
+        carSharingService.addCar(car);
+        return "redirect:/cars";
     }
 }

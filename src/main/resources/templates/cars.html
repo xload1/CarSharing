@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<body>
+<nav class="default-nav">
+    <ul>
+        <li><a href="/main">Back</a></li>
+        <li th:if="${isAdmin}"><a href="/bookings">Manage All Bookings</a></li>
+        <li><span th:text="'Logged in id: '+${id}"></span></li>
+    </ul>
+</nav>
+<h1 th:if="${cars.isEmpty()}">No cars yet</h1>
+<h1 th:unless="${cars.isEmpty()}">Manage all cars:</h1>
+<table th:unless="${cars.isEmpty()}" style="margin-left: auto; margin-right: auto">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Car Model</th>
+        <th>Available?</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="car : ${cars}">
+        <td th:text="${car.getCar_id()}"></td>
+        <td th:text="${car.getModel()}"></td>
+        <td th:text="${car.isAvailable()}"></td>
+        <td><form method="post" action="/deletecar">
+            <input type="hidden" name="car_id" th:value="${car.getCar_id()}">
+            <button type="submit">Remove car</button>
+        </form></td>
+    </tr>
+    </tbody>
+</table>
+<form method="post" action="/addcar">
+    <p>Add a new car:</p>
+    <input type="text" name="model" placeholder="Car model">
+    <button type="submit">Add car</button>
+</form>
+</body>
+</html>

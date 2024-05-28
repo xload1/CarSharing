@@ -51,4 +51,12 @@ public class ReservationService {
             System.out.println("Booking not found");
         }
     }
+    public void removeExpiredBookings() {
+        List<Bookings> bookings = bookingsRepository.findAll();
+        for (Bookings booking : bookings) {
+            if (LocalDateTime.now().isAfter(LocalDateTime.parse(booking.getTo(), DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")))) {
+                cancelBooking(booking.getBooking_id());
+            }
+        }
+    }
 }
