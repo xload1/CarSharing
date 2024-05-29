@@ -29,10 +29,11 @@
         <td th:text="${car.getCar_id()}"></td>
         <td th:text="${car.getModel()}"></td>
         <td th:text="${car.isAvailable()}"></td>
-        <td><form method="post" action="/deletecar">
+        <td th:if="${car.isAvailable()}"><form method="post" action="/deletecar">
             <input type="hidden" name="car_id" th:value="${car.getCar_id()}">
-            <button type="submit">Remove car</button>
+            <button type="submit" style="display: flex">Remove car</button>
         </form></td>
+        <td th:unless="${car.isAvailable()}"><button>Cant Remove</button></td>
     </tr>
     </tbody>
 </table>

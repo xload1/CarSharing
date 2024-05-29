@@ -29,7 +29,7 @@ public class Bookings {
     public Bookings(int userid, int car_id, String to) {
         this.userid = userid;
         this.car_id = car_id;
-        this.from = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+        this.from = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
         this.to = to;
     }
 }

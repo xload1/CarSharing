@@ -106,7 +106,7 @@ public class MainController {
     public String cancel(@RequestParam int booking_id, @RequestParam(required = false) String table) {
         reservationService.cancelBooking(booking_id);
         reservationError = "Booking cancelled";
-        if (table.equals("yes")) {
+        if (table!=null) {
             return "redirect:/bookings";
         }
         return "redirect:/reservations";

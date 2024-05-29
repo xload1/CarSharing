@@ -15,7 +15,7 @@
         <li><span th:text="'Logged in id: '+${id}"></span></li>
     </ul>
 </nav>
-<h1>Welcome! Select a car to create a booking</h1>
+<h1 style="margin-top: 13px">Welcome! Select a car to create a booking</h1>
 <a href="/main?show=true" th:unless="${show}">Show unavailable cars</a>
 <a href="/main" th:if="${show}">Hide unavailable cars</a>
 <br>
@@ -46,6 +46,7 @@
             const img = document.createElement('img');
             img.src = imgUrl;
             item.appendChild(img);
+            img.alt = 'loading...';
         });
     }
 

@@ -33,7 +33,7 @@ public class ReservationService {
         }
         car.setAvailable(false);
         carsRepository.save(car);
-        bookingsRepository.save(new Bookings(user.getUserid(), car.getCar_id(), LocalDateTime.now().plusHours(hours).format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"))));
+        bookingsRepository.save(new Bookings(user.getUserid(), car.getCar_id(), LocalDateTime.now().plusHours(hours).format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"))));
         return "Reservation successful";
     }
     public List<Bookings> getBookings(int user_id) {
@@ -54,7 +54,7 @@ public class ReservationService {
     public void removeExpiredBookings() {
         List<Bookings> bookings = bookingsRepository.findAll();
         for (Bookings booking : bookings) {
-            if (LocalDateTime.now().isAfter(LocalDateTime.parse(booking.getTo(), DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")))) {
+            if (LocalDateTime.now().isAfter(LocalDateTime.parse(booking.getTo(), DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")))) {
                 cancelBooking(booking.getBooking_id());
             }
         }
