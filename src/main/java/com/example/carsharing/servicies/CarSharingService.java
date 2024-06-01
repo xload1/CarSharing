@@ -23,7 +23,7 @@ public class CarSharingService {
         return carsRepository.findAll().stream().sorted(Comparator.comparing(Cars::isAvailable).reversed()).toList();
     }
     public Cars getCar(int id) {
-        return carsRepository.findById(id).orElse(null);
+        return carsRepository.findById(id).orElse(new Cars("CAR NOT FOUND"));
     }
     public List<Bookings> getAllBookings() {
         return bookingsRepository.findAll();

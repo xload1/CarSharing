@@ -18,4 +18,8 @@ public class Cars {
     String model;
     @Column(name = "is_available")
     boolean isAvailable;
+
+    public Cars(String model) {
+        this.model = model;
+    }
 }
